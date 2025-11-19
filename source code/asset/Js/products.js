@@ -53,26 +53,6 @@ if (filter) {
     });
 }
 
-// ===== PRICE RANGE =====
-if (priceRange) {
-    priceRange.addEventListener("change", (e) => {
-        const value = e.target.value;
-        
-        if (value === "") {
-            params.priceMin = null;
-            params.priceMax = null;
-        } else {
-            const [min, max] = value.split('-').map(Number);
-            params.priceMin = min;
-            params.priceMax = max;
-        }
-        
-        params.page = 1;
-        pagiNumber.innerHTML = params.page;
-        drawProducts();
-    });
-}
-
 // ===== PAGINATION =====
 if (pagiPrev && pagiNext && pagiNumber) {
     pagiPrev.addEventListener("click", () => {

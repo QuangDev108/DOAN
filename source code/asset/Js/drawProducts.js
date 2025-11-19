@@ -7,11 +7,11 @@ const productsContainer = document.querySelector("#products");
 
 export const drawProducts = () => {
     if (!productsContainer) {
-        console.error('❌ Products container not found');
+        console.error(' Products container not found');
         return;
     }
 
-    console.log('🔥 ===== DRAW PRODUCTS =====');
+    console.log(' ===== DRAW PRODUCTS =====');
     console.log('Mode:', FILTER_MODE);
     console.log('Params:', params);
 
@@ -52,7 +52,6 @@ function drawProductsServerSide() {
 function drawProductsClientSide() {
     fetchApi(API_PRODUCTS)
         .then(allData => {
-            console.log('📦 Fetched all:', allData.length, 'products');
 
             let filtered = [...allData];
 
@@ -72,16 +71,7 @@ function drawProductsClientSide() {
                 console.log('After search:', filtered.length);
             }
 
-            // 3. Filter price
-            if (params.priceMin !== null) {
-                filtered = filtered.filter(item => item.price >= params.priceMin);
-            }
-            if (params.priceMax !== null) {
-                filtered = filtered.filter(item => item.price <= params.priceMax);
-            }
-            console.log('After price filter:', filtered.length);
-
-            // 4. Sort
+            // 3. Sort
             if (params.sort && params.sort !== "") {
                 filtered.sort((a, b) => {
                     let compareA = a[params.sort];
@@ -99,7 +89,7 @@ function drawProductsClientSide() {
                 console.log('After sort:', params.sort, params.order);
             }
 
-            // 5. Pagination
+            // 4. Pagination
             const totalProducts = filtered.length;
             const startIndex = (params.page - 1) * params.limit;
             const endIndex = startIndex + params.limit;
