@@ -13,6 +13,20 @@ console.log('🚀 products.js loaded!');
 
 drawProducts();
 
+function scrollToProducts()
+{
+    setTimeout(() => {
+                const productsSelection = document.querySelector("#products-list");
+                if(productsSelection)
+                {
+                    productsSelection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            },100); 
+}
+
 // ===== SEARCH =====
 function handleSearch()
 {
@@ -20,6 +34,7 @@ function handleSearch()
     params.page = 1;
     pagiNumber.innerHTML = params.page;
     drawProducts();
+    scrollToProducts();
 }
 
 if(buttonSearch)
@@ -62,6 +77,7 @@ if(filter)
         params.page = 1;
         pagiNumber.innerHTML = params.page;
         drawProducts();
+        scrollToProducts();
     });
 }
 

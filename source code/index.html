@@ -73,6 +73,30 @@
      <div class="category-selection">
          
         <h2> Danh mục sản phẩm </h2>
+
+         <div class="products-filter">
+                <div class="row align-items-center">
+                    <div class="inner-wrap">
+                        <div class="col-xl-6" id="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" 
+                                        placeholder="Tìm kiếm sản phẩm" aria-label="Search">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa-solid fa-search"></i> Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3">
+                            <select class="form-select" id="filter">
+                                <option value="mac-dinh">Mặc định</option> 
+                                <option value="tu-thap-den-cao">Giá: Thấp đến cao</option> 
+                                <option value="tu-cao-den-thap">Giá: Cao xuống thấp</option> 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div id="category" class="category-list">
 
         </div>
@@ -126,17 +150,23 @@
         <div class="container">
             <div class="inner-title">
                 <h2>Danh Sách Sản Phẩm</h2>
-
             </div>
+
+           
             <div class="row">
                 <div id="products" class="products-list"></div>
             </div>
         </div>
-         <!-- <div class="pagination">
-               <span class="pagination__button" id="paginationPrev">Prev</span>
-               <span class="pagination__number" id="paginationNumber">1</span>
-               <span class="pagination__button" id="paginationNext">Next</span>
-           </div> -->
+
+         <div class="pagination">
+            <button class="pagination__button" id="paginationPrev">
+                <i class="fa-solid fa-chevron-left"></i> Prev
+            </button>
+            <span class="pagination__number" id="paginationNumber">1</span>
+            <button class="pagination__button" id="paginationNext">
+                Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
     </div>
     <!--End Selection-Three -->
 
