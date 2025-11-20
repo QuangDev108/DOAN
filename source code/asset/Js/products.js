@@ -2,7 +2,6 @@ import { drawProducts } from "./drawProducts.js";
 import { 
     buttonSearch,
     filter,
-    priceRange,
     inputSearch,
     pagiNext,
     pagiPrev,
@@ -12,62 +11,90 @@ import {
 
 console.log('🚀 products.js loaded!');
 
-// Initial draw
 drawProducts();
 
 // ===== SEARCH =====
-const search = () => {
+function handleSearch()
+{
     params.q = inputSearch.value;
     params.page = 1;
     pagiNumber.innerHTML = params.page;
     drawProducts();
-};
+}
 
-if (buttonSearch && inputSearch) {
-    buttonSearch.addEventListener("click", search);
+if(buttonSearch)
+{
+    buttonSearch.addEventListener("click", handleSearch);
+}
+
+if(inputSearch)
+{
     inputSearch.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") search();
+        if(e.key === "Enter")
+        {
+            handleSearch();
+        }
     });
 }
 
-// ===== FILTER (SORT) =====
-if (filter) {
+//=====Sắp xếp =======
+if(filter)
+{
     filter.addEventListener("change", (e) => {
-        switch(e.target.value) {
-            case "mac-dinh":
-                params.sort = "";
-                params.order = "";
-                break;
-            case "tu-thap-den-cao":
-                params.sort = "price";
-                params.order = "asc";
-                break;
-            case "tu-cao-den-thap":
-                params.sort = "price";
-                params.order = "desc";
-                break;
+        const value = e.target.value;
+
+        if(value === "mac-dinh")
+        {
+            params.sort = "";
+            params.order = "";
         }
+        else if(value === "tu-thap-den-cao")
+        {
+            params.sort = "price";
+            params.order = "asc";
+        }
+        else if(value === "tu-cao-den-thap")
+        {
+            params.sort = "price";
+            params.order = "desc";
+        }
+
         params.page = 1;
         pagiNumber.innerHTML = params.page;
         drawProducts();
     });
 }
 
-// ===== PAGINATION =====
-if (pagiPrev && pagiNext && pagiNumber) {
+//=====Pagination =======
+if(pagiPrev)
+{
     pagiPrev.addEventListener("click", () => {
-        if (params.page > 1) {
+        if(params.page > 1)
+        {
             params.page--;
             pagiNumber.innerHTML = params.page;
             drawProducts();
-            document.querySelector("#products-list")?.scrollIntoView({ behavior: "smooth" });
+
+            const productsList =  document.querySelector("#products-list");
+            if(productsList)
+            {
+                productsList.scrollIntoView({behavior: "smooth"});
+            }
         }
     });
+}
 
+if(pagiNext)
+{
     pagiNext.addEventListener("click", () => {
         params.page++;
         pagiNumber.innerHTML = params.page;
         drawProducts();
-        document.querySelector("#products-list")?.scrollIntoView({ behavior: "smooth" });
+
+        const productsList = document.querySelector("#products-list");
+        if(productsList)
+        {
+            productsList.scrollIntoView({behavior: "smooth"});
+        }
     });
 }

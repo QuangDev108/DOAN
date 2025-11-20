@@ -1,19 +1,24 @@
 import { fetchApi } from "./fetchApi.js";
 import { API_PRODUCTS } from "./constant.js";
-import { params, buildURL, FILTER_MODE } from "./variable.js";
+import { params } from "./variable.js";
 import cart from "./cart.js";
 
 const productsContainer = document.querySelector("#products");
+
+//hàm bỏ dấu của tiếng việt để tìm
+function removeVietNameseTones(str)
+{
+    if(!str) return "";
+    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    str = str.replace(/đ/g, 'd').replace(/Đ/g, 'D');
+    return str;
+}
 
 export const drawProducts = () => {
     if (!productsContainer) {
         console.error(' Products container not found');
         return;
     }
-
-    console.log(' ===== DRAW PRODUCTS =====');
-    console.log('Mode:', FILTER_MODE);
-    console.log('Params:', params);
 
     // Loading
     productsContainer.innerHTML = `
@@ -23,95 +28,82 @@ export const drawProducts = () => {
         </div>
     `;
 
-    // ⭐ CHỌN CÁCH FILTERING DỰA VÀO MODE
-    if (FILTER_MODE === "server") {
-        // ===== SERVER-SIDE FILTERING =====
-        drawProductsServerSide();
-    } else {
-        // ===== CLIENT-SIDE FILTERING =====
-        drawProductsClientSide();
-    }
-};
-
-// ===== SERVER-SIDE: Dùng buildURL =====
-function drawProductsServerSide() {
-    const apiURL = buildURL(API_PRODUCTS);
-
-    fetchApi(apiURL)
-        .then(data => {
-            console.log('✅ Server-side:', data.length, 'products');
-            renderProducts(data);
-        })
-        .catch(error => {
-            console.error('❌ Error:', error);
-            showError();
-        });
-}
-
-// ===== CLIENT-SIDE: Filter toàn bộ =====
-function drawProductsClientSide() {
+    //Lấy sản phẩm từ API
     fetchApi(API_PRODUCTS)
-        .then(allData => {
-
-            let filtered = [...allData];
-
-            // 1. Filter category
-            if (params.category && params.category !== "") {
+        .then(allProducts => {
+            //1. Lọc theo filter
+            let filtered = allProducts;
+            if(params.category && params.category !== "")
+            {
                 filtered = filtered.filter(item => item.type === params.category);
-                console.log('After category:', filtered.length);
             }
 
-            // 2. Search (bỏ dấu tiếng Việt)
-            if (params.q && params.q.trim() !== "") {
-                const searchTerm = removeVietnameseTones(params.q.toLowerCase());
+            //2. Tìm kiếm theo tên
+            if(params.q && params.q.trim() !== "")
+            {
+                const searchTerm = removeVietNameseTones(params.q.toLowerCase());
                 filtered = filtered.filter(item => {
-                    const itemName = removeVietnameseTones(item.name.toLowerCase());
+                    const itemName = removeVietNameseTones(item.name.toLowerCase());
                     return itemName.includes(searchTerm);
                 });
-                console.log('After search:', filtered.length);
             }
 
-            // 3. Sort
-            if (params.sort && params.sort !== "") {
-                filtered.sort((a, b) => {
-                    let compareA = a[params.sort];
-                    let compareB = b[params.sort];
+            //3. Sắp xếp
+            if(params.sort && params.sort !== "")
+            {
+                filtered.sort((a,b) => {
+                    let valueA = a[params.sort];
+                    let valueB = b[params.sort];
 
-                    if (typeof compareA === 'string') {
-                        compareA = compareA.toLowerCase();
-                        compareB = compareB.toLowerCase();
+                    //Nếu là text thì chuyển về chữ thường
+                    if(typeof valueA === "string")
+                    {
+                        valueA = valueA.toLowerCase();
+                        valueB = valueB.toLowerCase();
                     }
 
-                    return params.order === "asc" 
-                        ? (compareA > compareB ? 1 : -1)
-                        : (compareA < compareB ? 1 : -1);
+                    //So sánh theo thứ tự
+                    if(params.order === "asc")
+                    {
+                        return valueA > valueB ? 1 : -1;
+                    }
+                    else
+                    {
+                        return valueA < valueB ? 1 : -1;
+                    }
                 });
-                console.log('After sort:', params.sort, params.order);
             }
 
-            // 4. Pagination
+            //4. Phân trang
             const totalProducts = filtered.length;
             const startIndex = (params.page - 1) * params.limit;
             const endIndex = startIndex + params.limit;
-            const paginated = filtered.slice(startIndex, endIndex);
+            const productsToShow = filtered.slice(startIndex, endIndex);
 
-            console.log(`✅ Client-side: Page ${params.page} | ${paginated.length} of ${totalProducts}`);
+            console.log(` Trang ${params.page}: Hiển thị ${productsToShow.length}/${totalProducts} sản phẩm`);
 
-            // Update count
-            updateProductCount(totalProducts);
+            //Cập nhật số lượng sp
+            const countElement = document.querySelector("#products-count strong");
+            if(countElement)
+            {
+                countElement.textContent = totalProducts;
+            }
 
-            // Render
-            renderProducts(paginated);
+            renderProducts(productsToShow);
         })
         .catch(error => {
-            console.error('❌ Error:', error);
-            showError();
+            console.error("Lỗi: ", error);
+            productsContainer.innerHTML = `
+            <p style="margin-top: 20px;">Không thể tải sản phẩm. Vui lòng thử lại!</p>`;
         });
-}
 
-// ===== RENDER PRODUCTS (Dùng chung cho cả 2 mode) =====
-function renderProducts(data) {
-    if (!data || data.length === 0) {
+};
+
+
+function renderProducts(products) 
+{
+    if(!products || products.length === 0)
+    {
         productsContainer.innerHTML = `
             <div style="width: 100%; text-align: center; padding: 60px 20px; grid-column: 1/-1;">
                 <i class="fa-solid fa-box-open" style="font-size: 80px; color: #ddd;"></i>
@@ -122,11 +114,12 @@ function renderProducts(data) {
         return;
     }
 
-    let htmls = data.map(item => {
+    const htmlProducts = products.map(item => {
         return `
             <div class="product__item">
                 <div class="product__image">
-                    <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
+                    <img src="${item.image}" alt="${item.name}" 
+                        onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
                     ${item.quantity < 5 ? '<span class="badge-hot">Sắp hết</span>' : ''}
                 </div>
                 <div class="product__content">
@@ -147,45 +140,27 @@ function renderProducts(data) {
         `;
     });
 
-    productsContainer.innerHTML = htmls.join("");
-    attachBuyButtons();
+    productsContainer.innerHTML = htmlProducts.join("");
+    addBuyButtonEvents();
 
-    console.log('✅ Render completed!');
 }
 
-// ===== HELPER FUNCTIONS =====
-function removeVietnameseTones(str) {
-    if (!str) return '';
-    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    str = str.replace(/đ/g, 'd').replace(/Đ/g, 'D');
-    return str;
-}
 
-function updateProductCount(count) {
-    const countElement = document.querySelector('#products-count strong');
-    if (countElement) {
-        countElement.textContent = count;
-    }
-}
 
-function showError() {
-    productsContainer.innerHTML = `
-        <div style="width: 100%; text-align: center; padding: 40px; color: #e74c3c; grid-column: 1/-1;">
-            <i class="fa-solid fa-exclamation-circle" style="font-size: 48px;"></i>
-            <p style="margin-top: 20px;">Không thể tải sản phẩm. Vui lòng thử lại!</p>
-        </div>
-    `;
-}
+function addBuyButtonEvents()
+{
+    const buyButtons = document.querySelectorAll(".btn-checkout");
 
-function attachBuyButtons() {
-    const buyButtons = document.querySelectorAll('.btn-checkout');
     buyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            try {
+        button.addEventListener("click",() => {
+            try 
+            {
                 const product = JSON.parse(button.dataset.product);
                 cart.addToCart(product);
-            } catch (error) {
-                console.error('Error:', error);
+            } 
+            catch (error)
+            {
+                console.error("lỗi khi thêm vào giỏ: ", error);
             }
         });
     });
