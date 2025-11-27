@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./asset/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./asset/Css/admin.css">
+    <title>Admin - Quản lý cửa hàng</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Admin Panel</span>
+                </div>
+                <nav class="header-nav">
+                    <a href="index.html" class="btn-back">
+                        <i class="fa-solid fa-arrow-left"></i> Về trang chủ
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="admin-main">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="products">
+                    <i class="fa-solid fa-box"></i> Sản phẩm
+                </button>
+                <button class="tab-btn" data-tab="categories">
+                    <i class="fa-solid fa-tags"></i> Danh mục
+                </button>
+            </div>
+
+            <div class="tab-content active" id="products-tab">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-box"></i> Quản lý Sản phẩm</h2>
+                    <button class="btn-add" id="btnAddProduct">
+                        <i class="fa-solid fa-plus"></i> Thêm sản phẩm
+                    </button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Loại</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Data load bằng JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="tab-content" id="categories-tab">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-tags"></i> Quản lý Danh mục</h2>
+                    <button class="btn-add" id="btnAddCategory">
+                        <i class="fa-solid fa-plus"></i> Thêm danh mục
+                    </button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên danh mục</th>
+                                <th>Mô tả</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoriesTableBody">
+                            <!-- Data load bằng JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <div class="modal" id="productModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Thêm sản phẩm</h3>
+                <button class="btn-close-modal" id="closeProductModal">&times;</button>
+            </div>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>Tên sản phẩm <span>*</span></label>
+                    <input type="text" id="productName" required placeholder="Nhập tên sản phẩm">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Giá (VNĐ) <span>*</span></label>
+                        <input type="number" id="productPrice" required placeholder="VD: 150000">
+                    </div>
+                    <div class="form-group">
+                        <label>Số lượng <span>*</span></label>
+                        <input type="number" id="productQuantity" required placeholder="VD: 10">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Loại sản phẩm <span>*</span></label>
+                        <select id="productType" required>
+                            <option value="">-- Chọn loại --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Size</label>
+                        <select id="productSize">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="Free">Free Size</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Màu sắc</label>
+                    <input type="text" id="productColor" placeholder="VD: Đen, Trắng, Xanh">
+                </div>
+
+                <div class="form-group">
+                    <label>URL Hình ảnh <span>*</span></label>
+                    <input type="text" id="productImage" required placeholder="VD: asset/image/aothun.jpg">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelProduct">Hủy</button>
+                    <button type="submit" class="btn-save">
+                        <i class="fa-solid fa-save"></i> Lưu
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="modal" id="categoryModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle">Thêm danh mục</h3>
+                <button class="btn-close-modal" id="closeCategoryModal">&times;</button>
+            </div>
+            <form id="categoryForm">
+                <div class="form-group">
+                    <label>Tên danh mục <span>*</span></label>
+                    <input type="text" id="categoryName" required placeholder="VD: Áo, Quần, Váy...">
+                </div>
+
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <input type="text" id="categoryDescription" placeholder="Mô tả ngắn về danh mục">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelCategory">Hủy</button>
+                    <button type="submit" class="btn-save">
+                        <i class="fa-solid fa-save"></i> Lưu
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--thông báo -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-check-circle"></i>
+        <span id="toastMessage">Thành công!</span>
+    </div>
+
+    <script type="module" src="./asset/Js/admin.js"></script>
+</body>
+</html>

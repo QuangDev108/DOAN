@@ -76,18 +76,18 @@ export const drawProducts = () => {
 
             //4. Phân trang
             const totalProducts = filtered.length;
-            const startIndex = (params.page - 1) * params.limit;
+            const startIndex = (params.page - 1) * params.limit; //Bắt đầu lấy từ sp nào
             const endIndex = startIndex + params.limit;
             const productsToShow = filtered.slice(startIndex, endIndex);
 
             console.log(` Trang ${params.page}: Hiển thị ${productsToShow.length}/${totalProducts} sản phẩm`);
 
             //Cập nhật số lượng sp
-            const countElement = document.querySelector("#products-count strong");
-            if(countElement)
-            {
-                countElement.textContent = totalProducts;
-            }
+            // const countElement = document.querySelector("#products-count strong");
+            // if(countElement)
+            // {
+            //     countElement.textContent = totalProducts;
+            // }
 
             renderProducts(productsToShow);
         })
