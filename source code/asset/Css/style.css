@@ -57,6 +57,25 @@
     background-color: white;
     cursor: pointer;
 }
+
+.inner-menu .admin-only {
+    display: none;
+}
+
+/* Hiện menu QLSP khi admin đăng nhập */
+body.is-admin .inner-menu .admin-only {
+    display: block;
+}
+
+/* Style cho menu QLSP */
+.inner-menu .admin-only a {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.inner-menu .admin-only a:hover {
+    color: #764ba2;
+}
 /*End Header */
 
 

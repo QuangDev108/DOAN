@@ -1,5 +1,5 @@
 {
-  "users": [
+ "users": [
     {
       "id": 1,
       "username": "admin",
@@ -19,16 +19,6 @@
       "email": "user@example.com",
       "phone": "0901234567",
       "createdAt": "2024-01-15"
-    },
-    {
-      "id": 3,
-      "username": "customer1",
-      "password": "123456",
-      "role": "user",
-      "fullName": "Trần Thị B",
-      "email": "customer1@example.com",
-      "phone": "0912345678",
-      "createdAt": "2024-02-20"
     }
   ],
   "category": [

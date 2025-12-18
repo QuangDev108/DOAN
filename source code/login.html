@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./asset/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./asset/Css/login.css">
+    <title>Đăng nhập - HighFashion</title>
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <!-- Left Side - Branding -->
+        <div class="login-left">
+            <h1>🛍️ HighFashion</h1>
+            <p>Nền tảng mua sắm thời trang hiện đại với hàng ngàn sản phẩm chất lượng cao.</p>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <span>Bảo mật tuyệt đối</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Giao hàng toàn quốc</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>Hỗ trợ 24/7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="login-right">
+            <div class="login-header">
+                <h2>Đăng nhập</h2>
+                <p>Chào mừng bạn quay trở lại!</p>
+            </div>
+
+            <!-- Alert -->
+            <div id="alertBox" class="alert"></div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Tên đăng nhập <span>*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="username" class="form-control" 
+                               placeholder="Nhập tên đăng nhập" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Mật khẩu <span>*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" class="form-control" 
+                               placeholder="Nhập mật khẩu" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+                </button>
+            </form>
+
+            <!-- Demo Accounts Info - FIXED -->
+            <div class="demo-accounts">
+                <h4>🔑 Tài khoản demo:</h4>
+                <p><strong>Admin:</strong> <code>admin</code> / <code>admin123</code></p>
+                <p><strong>User:</strong> <code>user</code> / <code>user123</code></p>
+            </div>
+
+            <div class="login-footer">
+                <a href="index.html">
+                    <i class="fa-solid fa-arrow-left"></i> Về trang chủ
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { login } from './asset/Js/login.js';
+
+        const loginForm = document.getElementById('loginForm');
+        const alertBox = document.getElementById('alertBox');
+
+        // Hiển thị thông báo
+        function showAlert(message, type = 'danger') {
+            alertBox.textContent = message;
+            alertBox.className = `alert alert-${type} show`;
+            
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, 5000);
+        }
+
+        // Xử lý đăng nhập
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Validation
+            if (!username || !password) {
+                showAlert('Vui lòng nhập đầy đủ thông tin!');
+                return;
+            }
+
+            // Disable button
+            const btnLogin = loginForm.querySelector('.btn-login');
+            btnLogin.disabled = true;
+            btnLogin.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang đăng nhập...';
+
+            try {
+                const result = await login(username, password);
+
+                if (result.success) {
+                    showAlert(`Đăng nhập thành công! Chào mừng ${result.user.fullName}`, 'success');
+                    
+                    // Admin và User đều về index.html
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    showAlert(result.message);
+                    btnLogin.disabled = false;
+                    btnLogin.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Đăng nhập';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showAlert('Có lỗi xảy ra! Kiểm tra console.');
+                btnLogin.disabled = false;
+                btnLogin.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Đăng nhập';
+            }
+        });
+
+        // Auto-fill demo account on double click
+        document.getElementById('username').addEventListener('dblclick', () => {
+            document.getElementById('username').value = 'admin';
+            document.getElementById('password').value = 'admin123';
+        });
+        
+        // BONUS: Click vào demo accounts để tự động điền
+        document.querySelector('.demo-accounts').addEventListener('click', (e) => {
+            const text = e.target.textContent;
+            if (text.includes('Admin')) {
+                document.getElementById('username').value = 'admin';
+                document.getElementById('password').value = 'admin123';
+            } else if (text.includes('User')) {
+                document.getElementById('username').value = 'user';
+                document.getElementById('password').value = 'user123';
+            }
+        });
+    </script>
+</body>
+</html>

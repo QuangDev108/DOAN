@@ -12,6 +12,13 @@
       />
     <link rel="stylesheet" href="./asset/Css/base.css">
     <link rel="stylesheet" href="./asset/Css/style.css">
+    <script type="module">
+        import { updateHeaderUI } from './asset/Js/login.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            updateHeaderUI();
+        });
+    </script>
     <title>DO AN TIN HOC</title>
 </head>
 <body>
@@ -32,6 +39,7 @@
             <div class="inner-menu">
                 <ul>
                     <li><a href="index.html">Trang chủ</a></li>
+                    <li class="admin-only"><a href="admin.html">Quản Lý Sản phẩm</a></li>
                     <li class="cart"><a href="cart.html">Giỏ hàng</a></li>
                     <li><a href="#contact">Liên hệ</a></li>
                 </ul>

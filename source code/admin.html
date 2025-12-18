@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="./asset/Bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./asset/Css/admin.css">
+    <script type="module">
+        import { requireAdmin } from './asset/Js/login.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!requireAdmin()) {
+            }
+        });
+    </script>
     <title>Admin - Quản lý cửa hàng</title>
 </head>
 <body>
