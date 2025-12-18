@@ -1,11 +1,20 @@
+/* ========================================
+   LOGIN.CSS - Tất cả CSS cho login & auth
+   ======================================== */
+
+/* ====== 1. ẨN/HIỆN MENU QLSP ====== */
+
+/* Ẩn menu QLSP mặc định */
 .inner-menu .admin-only {
     display: none;
 }
 
+/* Hiện menu QLSP khi admin đăng nhập */
 body.is-admin .inner-menu .admin-only {
     display: block;
 }
 
+/* Style cho menu QLSP */
 .inner-menu .admin-only a {
     color: #667eea;
     font-weight: 600;
@@ -16,10 +25,27 @@ body.is-admin .inner-menu .admin-only {
     color: #764ba2;
 }
 
+/* ====== HEADER CHỈ LOGO ====== */
+.header-login .inner-wrap {
+    justify-content: flex-start;
+    padding: 20px 40px;
+}
+
+.header-login .logo-content span {
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* ====== 2. DROPDOWN USER - CHỈ NÚT ĐĂNG XUẤT ====== */
+
+/* Đảm bảo .login có position relative */
 .login {
     position: relative;
 }
 
+/* Dropdown container - CỰC GỌN */
 .user-dropdown {
     position: absolute;
     top: calc(100% + 12px);
@@ -45,7 +71,9 @@ body.is-admin .inner-menu .admin-only {
     }
 }
 
-.user-dropdown button, #btnLogoutDropdown {
+/* Logout button - Style cho nút đăng xuất */
+.user-dropdown button,
+#btnLogoutDropdown {
     width: 100%;
     padding: 10px;
     background: #dc3545;
@@ -58,11 +86,15 @@ body.is-admin .inner-menu .admin-only {
     transition: all 0.2s;
 }
 
-.user-dropdown button:hover, #btnLogoutDropdown:hover {
+.user-dropdown button:hover,
+#btnLogoutDropdown:hover {
     background: #c82333;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
+
+
+/* ====== 3. LOGIN BUTTON STYLE ====== */
 
 .login .button {
     transition: all 0.3s;
@@ -75,49 +107,52 @@ body.is-admin .inner-menu .admin-only {
 }
 
 
-.login-page {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
+/* ====== 4. LOGIN SECTION - 2 CỘT ====== */
+
+.login-section {
+    background: #f5f5f5;
+    min-height: calc(100vh - 200px);
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
+    padding: 100px 20px; /* ← Tăng padding top */
 }
 
-.login-container {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    overflow: hidden;
-    max-width: 900px;
-    width: 100%;
-    display: flex;
+.login-container-two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.login-left {
-    flex: 1;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 60px 40px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* Cột trái - Branding */
+.login-left-col {
+    padding: 40px;
 }
 
-.login-left h1 {
-    font-size: 36px;
+.brand-content h1 {
+    font-size: 48px;
+    color: #333;
     margin-bottom: 20px;
     font-weight: 700;
 }
 
-.login-left p {
-    font-size: 16px;
-    line-height: 1.6;
-    opacity: 0.9;
+.brand-slogan {
+    font-size: 24px;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
-.login-left .features {
+.brand-desc {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.features {
     margin-top: 40px;
 }
 
@@ -125,35 +160,51 @@ body.is-admin .inner-menu .admin-only {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
 }
 
 .feature-item i {
-    font-size: 24px;
+    font-size: 28px;
     margin-right: 15px;
-    background: rgba(255,255,255,0.2);
-    padding: 10px;
-    border-radius: 10px;
+    color: #667eea;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f4ff;
+    border-radius: 12px;
 }
 
-.login-right {
-    flex: 1;
-    padding: 60px 40px;
+/* Cột phải - Form */
+.login-right-col {
+    padding: 20px;
+}
+
+.login-box {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    padding: 40px;
+    border: 1px solid #e0e0e0;
 }
 
 .login-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .login-header h2 {
     font-size: 32px;
     color: #333;
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .login-header p {
     color: #666;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .form-group {
@@ -224,7 +275,7 @@ body.is-admin .inner-menu .admin-only {
 
 .login-footer {
     text-align: center;
-    margin-top: 25px;
+    margin-top: 0px;
     padding-top: 25px;
     border-top: 1px solid #e0e0e0;
 }
@@ -296,7 +347,7 @@ body.is-admin .inner-menu .admin-only {
 }
 
 
-/* ====== RESPONSIVE ====== */
+/* ====== 5. RESPONSIVE ====== */
 
 @media (max-width: 768px) {
     .login-container {
@@ -311,6 +362,7 @@ body.is-admin .inner-menu .admin-only {
         padding: 40px 30px;
     }
     
+    /* Dropdown trên mobile */
     .user-dropdown {
         left: 10px;
         right: 10px;

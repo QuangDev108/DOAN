@@ -5,81 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./asset/Bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./asset/Css/base.css">
+    <link rel="stylesheet" href="./asset/Css/style.css">
     <link rel="stylesheet" href="./asset/Css/login.css">
     <title>Đăng nhập - HighFashion</title>
 </head>
-<body class="login-page">
-    <div class="login-container">
-        <!-- Left Side - Branding -->
-        <div class="login-left">
-            <h1>🛍️ HighFashion</h1>
-            <p>Nền tảng mua sắm thời trang hiện đại với hàng ngàn sản phẩm chất lượng cao.</p>
-            
-            <div class="features">
-                <div class="feature-item">
-                    <i class="fa-solid fa-shield-check"></i>
-                    <span>Bảo mật tuyệt đối</span>
+<body>
+    <!-- Header - CHỈ LOGO -->
+    <header class="header header-login">
+        <div class="inner-wrap">
+            <div class="logo">
+                <div class="logo-img">
+                    <a href="index.html">
+                        <img src="./asset/image/logo.png" alt="Logo">
+                    </a>
                 </div>
-                <div class="feature-item">
-                    <i class="fa-solid fa-truck-fast"></i>
-                    <span>Giao hàng toàn quốc</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fa-solid fa-headset"></i>
-                    <span>Hỗ trợ 24/7</span>
+                <div class="logo-content">
+                    <span>HighFashion</span>
                 </div>
             </div>
         </div>
+    </header>
+    <!--End Header -->
 
-        <!-- Right Side - Login Form -->
-        <div class="login-right">
-            <div class="login-header">
-                <h2>Đăng nhập</h2>
-                <p>Chào mừng bạn quay trở lại!</p>
-            </div>
-
-            <!-- Alert -->
-            <div id="alertBox" class="alert"></div>
-
-            <!-- Login Form -->
-            <form id="loginForm">
-                <div class="form-group">
-                    <label>Tên đăng nhập <span>*</span></label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" id="username" class="form-control" 
-                               placeholder="Nhập tên đăng nhập" required>
+    <!-- Login Section - 2 CỘT -->
+    <div class="login-section">
+        <div class="container">
+            <div class="login-container-two-cols">
+                <!-- Cột trái - Branding -->
+                <div class="login-left-col">
+                    <div class="brand-content">
+                        <h1>🛍️ HighFashion</h1>
+                        <p class="brand-slogan">Phong cách thời trang - Định hình cá tính</p>
+                        <p class="brand-desc">Khám phá bộ sưu tập mới nhất — nơi kết hợp giữa xu hướng và sự tinh tế.</p>
+                        
+                        <div class="features">
+                            <div class="feature-item">
+                                <i class="fa-solid fa-shield-check"></i>
+                                <span>Bảo mật tuyệt đối</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fa-solid fa-truck-fast"></i>
+                                <span>Giao hàng toàn quốc</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fa-solid fa-headset"></i>
+                                <span>Hỗ trợ 24/7</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Mật khẩu <span>*</span></label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="password" class="form-control" 
-                               placeholder="Nhập mật khẩu" required>
+                <!-- Cột phải - Form đăng nhập -->
+                <div class="login-right-col">
+                    <div class="login-box">
+                        <div class="login-header">
+                            <h2>🔐 Đăng nhập</h2>
+                            <p>Chào mừng bạn quay trở lại HighFashion!</p>
+                        </div>
+
+                        <!-- Alert -->
+                        <div id="alertBox" class="alert"></div>
+
+                        <!-- Login Form -->
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label>Tên đăng nhập <span>*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="username" class="form-control" 
+                                           placeholder="Nhập tên đăng nhập" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Mật khẩu <span>*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <input type="password" id="password" class="form-control" 
+                                           placeholder="Nhập mật khẩu" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-login">
+                                <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+                            </button>
+                        </form>
+
+                        <!-- Demo Accounts Info -->
+                        <div class="demo-accounts">
+                            <h4>🔑 Tài khoản demo:</h4>
+                            <p><strong>Admin:</strong> <code>admin</code> / <code>admin123</code></p>
+                            <p><strong>User:</strong> <code>user</code> / <code>user123</code></p>
+                        </div>
                     </div>
                 </div>
-
-                <button type="submit" class="btn-login">
-                    <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
-                </button>
-            </form>
-
-            <!-- Demo Accounts Info - FIXED -->
-            <div class="demo-accounts">
-                <h4>🔑 Tài khoản demo:</h4>
-                <p><strong>Admin:</strong> <code>admin</code> / <code>admin123</code></p>
-                <p><strong>User:</strong> <code>user</code> / <code>user123</code></p>
-            </div>
-
-            <div class="login-footer">
-                <a href="index.html">
-                    <i class="fa-solid fa-arrow-left"></i> Về trang chủ
-                </a>
             </div>
         </div>
     </div>
+
+    <!--Footer - CHỈ LIÊN HỆ -->
+    <footer class="footer" id="contact">
+       <div class="container">
+            <div class="row">
+                <div class="inner-wrap col-xl-12">
+                    <div class="content col-xl-6">
+                        <h2>Liên hệ</h2>
+                        <p><i class="fa-solid fa-envelope"></i> Email: support@highfashion.com</p>
+                        <p><i class="fa-solid fa-phone-volume"></i> Hotline: 0938 9133 267</p>
+                    </div>
+                    <div class="social col-xl-6">
+                        <h2>Mạng xã hội</h2>
+                        <div class="inner-list">
+                            <a href="https://www.facebook.com/truong.minh.quang.26470" alt="linkfb" ><img src="https://cdn.haluta.vn/media/core/icons/facebook.png" alt="FB"></a>
+                            <a href="https://zalo.me/0776130420"><img src="https://cdn.haluta.vn/media/core/icons/zalo.png" alt="FB"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--End Footer -->
 
     <script type="module">
         import { login } from './asset/Js/login.js';
@@ -104,13 +150,11 @@
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
 
-            // Validation
             if (!username || !password) {
                 showAlert('Vui lòng nhập đầy đủ thông tin!');
                 return;
             }
 
-            // Disable button
             const btnLogin = loginForm.querySelector('.btn-login');
             btnLogin.disabled = true;
             btnLogin.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang đăng nhập...';
@@ -121,7 +165,6 @@
                 if (result.success) {
                     showAlert(`Đăng nhập thành công! Chào mừng ${result.user.fullName}`, 'success');
                     
-                    // Admin và User đều về index.html
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 1000);
@@ -138,13 +181,12 @@
             }
         });
 
-        // Auto-fill demo account on double click
+        // Auto-fill demo
         document.getElementById('username').addEventListener('dblclick', () => {
             document.getElementById('username').value = 'admin';
             document.getElementById('password').value = 'admin123';
         });
         
-        // BONUS: Click vào demo accounts để tự động điền
         document.querySelector('.demo-accounts').addEventListener('click', (e) => {
             const text = e.target.textContent;
             if (text.includes('Admin')) {
