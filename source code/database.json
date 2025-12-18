@@ -1,49 +1,82 @@
 {
-  "category": [
+  "users": [
     {
-      "id": "1",
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "fullName": "Quản trị viên",
+      "email": "admin@highfashion.com",
+      "phone": "0938913267",
+      "createdAt": "2024-01-01"
+    },
+    {
+      "id": 2,
+      "username": "user",
+      "password": "user123",
+      "role": "user",
+      "fullName": "Nguyễn Văn A",
+      "email": "user@example.com",
+      "phone": "0901234567",
+      "createdAt": "2024-01-15"
+    },
+    {
+      "id": 3,
+      "username": "customer1",
+      "password": "123456",
+      "role": "user",
+      "fullName": "Trần Thị B",
+      "email": "customer1@example.com",
+      "phone": "0912345678",
+      "createdAt": "2024-02-20"
+    }
+  ],
+  "category": [
+    { 
+      "id": 1, 
       "name": "Áo",
       "description": "Các loại áo thun, sơ mi, polo"
     },
-    {
-      "id": "2",
+    { 
+      "id": 2, 
       "name": "Quần",
       "description": "Quần jean, tây, short"
     },
-    {
-      "id": "3",
+    { 
+      "id": 3, 
       "name": "Váy",
       "description": "Váy ngắn, midi, maxi"
     },
-    {
-      "id": "4",
+    { 
+      "id": 4, 
       "name": "Đầm",
       "description": "Đầm dạ hội, công sở, dự tiệc"
     },
-    {
-      "id": "5",
+    { 
+      "id": 5, 
       "name": "Áo khoác",
       "description": "Áo khoác jean, blazer, hoodie"
     },
-    {
-      "id": "6",
+    { 
+      "id": 6, 
       "name": "Phụ kiện",
       "description": "Túi xách, dây nịt, mũ, khăn"
     }
   ],
   "products": [
     {
+      "id": 1,
       "name": "Áo thun trắng",
-      "price": 100000,
-      "quantity": 100,
       "type": "Áo",
+      "categoryId": 1,
       "size": "L",
       "color": "Trắng",
-      "image": "asset/image/aothuntrang.jpg",
-      "id": "1"
+      "price": 150000,
+      "quantity": 10,
+      "image": "asset/image/aothuntrang.jpg"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Quần jean xanh",
       "type": "Quần",
       "categoryId": 2,
@@ -54,7 +87,7 @@
       "image": "asset/image/quan-jean.jpg"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Áo sơ mi",
       "type": "Áo",
       "categoryId": 1,
@@ -65,7 +98,7 @@
       "image": "asset/image/ao-so-mi-tay-dai-oxford-mau-trang.jpg"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Váy hoa",
       "type": "Váy",
       "categoryId": 3,
@@ -76,7 +109,7 @@
       "image": "asset/image/vayhoa.jpg"
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Áo khoác jean",
       "type": "Áo khoác",
       "categoryId": 5,
@@ -87,7 +120,7 @@
       "image": "asset/image/aokhoac.webp"
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "Quần short kaki",
       "type": "Quần",
       "categoryId": 2,
@@ -98,7 +131,7 @@
       "image": "asset/image/quanshort.jpg"
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "Đầm đen ôm body",
       "type": "Đầm",
       "categoryId": 4,
@@ -109,7 +142,7 @@
       "image": "asset/image/damden.webp"
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Túi xách da nữ",
       "type": "Phụ kiện",
       "categoryId": 6,
@@ -120,7 +153,7 @@
       "image": "asset/image/tui-xach.jpg"
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "Áo len cổ lọ",
       "type": "Áo",
       "categoryId": 1,
@@ -131,7 +164,7 @@
       "image": "asset/image/aolen.jpg"
     },
     {
-      "id": "10",
+      "id": 10,
       "name": "Quần tây",
       "type": "Quần",
       "categoryId": 2,
@@ -142,7 +175,7 @@
       "image": "asset/image/quantay.jpg"
     },
     {
-      "id": "11",
+      "id": 11,
       "name": "Váy midi xòe",
       "type": "Váy",
       "categoryId": 3,
@@ -153,7 +186,7 @@
       "image": "asset/image/vaymidi.jpg"
     },
     {
-      "id": "12",
+      "id": 12,
       "name": "Thắt lưng cao cấp",
       "type": "Phụ kiện",
       "categoryId": 6,

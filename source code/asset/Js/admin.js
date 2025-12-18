@@ -20,7 +20,8 @@ const productForm = document.getElementById("productForm");
 const categoryForm = document.getElementById("categoryForm");
 
 // ========== TOAST THÔNG BÁO ==========
-function showToast(message, isError = false) {
+function showToast(message, isError = false) 
+{
     const toast = document.getElementById("toast");
     const toastMessage = document.getElementById("toastMessage");
     
@@ -54,14 +55,16 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 // ==========================================
 
 // Load danh sách sản phẩm
-async function loadProducts() {
+async function loadProducts() 
+{
     productsTableBody.innerHTML = `
         <tr><td colspan="7" class="loading">
             <i class="fa-solid fa-spinner fa-spin"></i><br>Đang tải...
         </td></tr>
     `;
 
-    try {
+    try 
+    {
         const products = await fetchApi(API_PRODUCTS);
         
         if (products.length === 0) {
@@ -99,24 +102,28 @@ async function loadProducts() {
             </tr>
         `).join("");
 
-    } catch (error) {
+    } catch (error) 
+    {
         productsTableBody.innerHTML = `
             <tr><td colspan="7" class="empty" style="color:#e74c3c;">
-                ❌ Lỗi tải dữ liệu! Kiểm tra JSON Server.
+                 Lỗi tải dữ liệu! Kiểm tra JSON Server.
             </td></tr>
         `;
     }
 }
 
 // Load danh mục vào dropdown
-async function loadCategoryOptions() {
-    try {
+async function loadCategoryOptions() 
+{
+    try 
+    {
         const categories = await fetchApi(API_CATEGORY);
         const select = document.getElementById("productType");
         
         select.innerHTML = `<option value="">-- Chọn loại --</option>` +
             categories.map(cat => `<option value="${cat.name}">${cat.name}</option>`).join("");
-    } catch (error) {
+    } catch (error) 
+    {
         console.error("Lỗi load danh mục:", error);
     }
 }
