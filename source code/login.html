@@ -3,52 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./asset/Bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./asset/Css/base.css">
-    <link rel="stylesheet" href="./asset/Css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./asset/Css/login.css">
     <title>Đăng nhập - HighFashion</title>
 </head>
-<body>
-    <!-- Header - CHỈ LOGO -->
-    <header class="header header-login">
+<body class="login-page-body">
+    
+    <!-- Header - LOGO + NÚT QUAY LẠI -->
+    <header class="login-page-header">
         <div class="inner-wrap">
             <div class="logo">
                 <div class="logo-img">
                     <a href="index.html">
-                        <img src="./asset/image/logo.png" alt="Logo">
+                        <img src="./asset/image/logo.png" alt="Logo" style="filter: hue-rotate(220deg) saturate(1.2);">
                     </a>
                 </div>
                 <div class="logo-content">
                     <span>HighFashion</span>
                 </div>
             </div>
+            <a href="index.html" class="btn-back-home">
+                <i class="fa-solid fa-house"></i>
+                <span>Trang chủ</span>
+            </a>
         </div>
     </header>
-    <!--End Header -->
 
-    <!-- Login Section - 2 CỘT -->
-    <div class="login-section">
-        <div class="container">
-            <div class="login-container-two-cols">
+    <!-- Login Content - 2 Cột -->
+    <main class="login-page-content">
+        <div class="login-page-container">
+            <div class="login-two-columns">
+                
                 <!-- Cột trái - Branding -->
-                <div class="login-left-col">
-                    <div class="brand-content">
+                <div class="login-brand-column">
+                    <div class="login-brand-content">
                         <h1>🛍️ HighFashion</h1>
-                        <p class="brand-slogan">Phong cách thời trang - Định hình cá tính</p>
-                        <p class="brand-desc">Khám phá bộ sưu tập mới nhất — nơi kết hợp giữa xu hướng và sự tinh tế.</p>
+                        <p class="login-brand-slogan">Phong cách thời trang - Định hình cá tính</p>
+                        <p class="login-brand-desc">Khám phá bộ sưu tập mới nhất — nơi kết hợp giữa xu hướng và sự tinh tế.</p>
                         
-                        <div class="features">
-                            <div class="feature-item">
-                                <i class="fa-solid fa-shield-check"></i>
+                        <div class="login-features">
+                            <div class="login-feature-item">
+                                <i class="fa-solid fa-shield-halved"></i>
                                 <span>Bảo mật tuyệt đối</span>
                             </div>
-                            <div class="feature-item">
+                            <div class="login-feature-item">
                                 <i class="fa-solid fa-truck-fast"></i>
                                 <span>Giao hàng toàn quốc</span>
                             </div>
-                            <div class="feature-item">
+                            <div class="login-feature-item">
                                 <i class="fa-solid fa-headset"></i>
                                 <span>Hỗ trợ 24/7</span>
                             </div>
@@ -57,43 +59,41 @@
                 </div>
 
                 <!-- Cột phải - Form đăng nhập -->
-                <div class="login-right-col">
-                    <div class="login-box">
-                        <div class="login-header">
+                <div class="login-form-column">
+                    <div class="login-form-box">
+                        <div class="login-form-header">
                             <h2>🔐 Đăng nhập</h2>
                             <p>Chào mừng bạn quay trở lại HighFashion!</p>
                         </div>
 
                         <!-- Alert -->
-                        <div id="alertBox" class="alert"></div>
+                        <div id="alertBox" class="login-alert"></div>
 
                         <!-- Login Form -->
                         <form id="loginForm">
-                            <div class="form-group">
+                            <div class="login-form-group">
                                 <label>Tên đăng nhập <span>*</span></label>
-                                <div class="input-wrapper">
-                                    <i class="fa-solid fa-user"></i>
-                                    <input type="text" id="username" class="form-control" 
-                                           placeholder="Nhập tên đăng nhập" required>
+                                <div class="login-input-wrapper">
+                                    <input type="text" id="username" class="login-form-control" 
+                                           placeholder="Nhập tên đăng nhập" required autocomplete="username">
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="login-form-group">
                                 <label>Mật khẩu <span>*</span></label>
-                                <div class="input-wrapper">
-                                    <i class="fa-solid fa-lock"></i>
-                                    <input type="password" id="password" class="form-control" 
-                                           placeholder="Nhập mật khẩu" required>
+                                <div class="login-input-wrapper">
+                                    <input type="password" id="password" class="login-form-control" 
+                                           placeholder="Nhập mật khẩu" required autocomplete="current-password">
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn-login">
+                            <button type="submit" class="login-btn-submit">
                                 <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
                             </button>
                         </form>
 
                         <!-- Demo Accounts Info -->
-                        <div class="demo-accounts">
+                        <div class="login-demo-accounts">
                             <h4>🔑 Tài khoản demo:</h4>
                             <p><strong>Admin:</strong> <code>admin</code> / <code>admin123</code></p>
                             <p><strong>User:</strong> <code>user</code> / <code>user123</code></p>
@@ -102,30 +102,31 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!--Footer - CHỈ LIÊN HỆ -->
-    <footer class="footer" id="contact">
-       <div class="container">
-            <div class="row">
-                <div class="inner-wrap col-xl-12">
-                    <div class="content col-xl-6">
-                        <h2>Liên hệ</h2>
-                        <p><i class="fa-solid fa-envelope"></i> Email: support@highfashion.com</p>
-                        <p><i class="fa-solid fa-phone-volume"></i> Hotline: 0938 9133 267</p>
-                    </div>
-                    <div class="social col-xl-6">
-                        <h2>Mạng xã hội</h2>
-                        <div class="inner-list">
-                            <a href="https://www.facebook.com/truong.minh.quang.26470" alt="linkfb" ><img src="https://cdn.haluta.vn/media/core/icons/facebook.png" alt="FB"></a>
-                            <a href="https://zalo.me/0776130420"><img src="https://cdn.haluta.vn/media/core/icons/zalo.png" alt="FB"></a>
-                        </div>
+    <!-- Footer -->
+    <footer class="login-page-footer">
+        <div class="container">
+            <div class="login-footer-content">
+                <div class="login-footer-contact">
+                    <h2>Liên hệ</h2>
+                    <p><i class="fa-solid fa-envelope"></i> Email: support@highfashion.com</p>
+                    <p><i class="fa-solid fa-phone-volume"></i> Hotline: 0938 9133 267</p>
+                </div>
+                <div class="login-footer-social">
+                    <h2>Mạng xã hội</h2>
+                    <div class="login-footer-social-links">
+                        <a href="https://www.facebook.com/truong.minh.quang.26470" target="_blank">
+                            <img src="https://cdn.haluta.vn/media/core/icons/facebook.png" alt="Facebook">
+                        </a>
+                        <a href="https://zalo.me/0776130420" target="_blank">
+                            <img src="https://cdn.haluta.vn/media/core/icons/zalo.png" alt="Zalo">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!--End Footer -->
 
     <script type="module">
         import { login } from './asset/Js/login.js';
@@ -136,7 +137,7 @@
         // Hiển thị thông báo
         function showAlert(message, type = 'danger') {
             alertBox.textContent = message;
-            alertBox.className = `alert alert-${type} show`;
+            alertBox.className = `login-alert login-alert-${type} show`;
             
             setTimeout(() => {
                 alertBox.classList.remove('show');
@@ -155,7 +156,7 @@
                 return;
             }
 
-            const btnLogin = loginForm.querySelector('.btn-login');
+            const btnLogin = loginForm.querySelector('.login-btn-submit');
             btnLogin.disabled = true;
             btnLogin.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang đăng nhập...';
 
@@ -181,13 +182,14 @@
             }
         });
 
-        // Auto-fill demo
+        // Auto-fill demo khi double click
         document.getElementById('username').addEventListener('dblclick', () => {
             document.getElementById('username').value = 'admin';
             document.getElementById('password').value = 'admin123';
         });
         
-        document.querySelector('.demo-accounts').addEventListener('click', (e) => {
+        // Click vào demo accounts để auto-fill
+        document.querySelector('.login-demo-accounts').addEventListener('click', (e) => {
             const text = e.target.textContent;
             if (text.includes('Admin')) {
                 document.getElementById('username').value = 'admin';

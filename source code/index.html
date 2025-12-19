@@ -14,9 +14,11 @@
     <link rel="stylesheet" href="./asset/Css/style.css">
     <script type="module">
         import { updateHeaderUI } from './asset/Js/login.js';
+        import cart from './asset/Js/cart.js';
         
         document.addEventListener('DOMContentLoaded', () => {
             updateHeaderUI();
+            cart.updateCartCount();
         });
     </script>
     <title>DO AN TIN HOC</title>

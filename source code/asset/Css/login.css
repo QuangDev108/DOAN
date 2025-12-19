@@ -25,18 +25,6 @@ body.is-admin .inner-menu .admin-only {
     color: #764ba2;
 }
 
-/* ====== HEADER CHỈ LOGO ====== */
-.header-login .inner-wrap {
-    justify-content: flex-start;
-    padding: 20px 40px;
-}
-
-.header-login .logo-content span {
-    color: #333;
-    font-size: 24px;
-    font-weight: 700;
-}
-
 
 /* ====== 2. DROPDOWN USER - CHỈ NÚT ĐĂNG XUẤT ====== */
 
@@ -45,7 +33,7 @@ body.is-admin .inner-menu .admin-only {
     position: relative;
 }
 
-/* Dropdown container - CỰC GỌN */
+/* Dropdown container - CỰC GỌNG */
 .user-dropdown {
     position: absolute;
     top: calc(100% + 12px);
@@ -71,7 +59,7 @@ body.is-admin .inner-menu .admin-only {
     }
 }
 
-/* Logout button - Style cho nút đăng xuất */
+/* Logout button */
 .user-dropdown button,
 #btnLogoutDropdown {
     width: 100%;
@@ -107,197 +95,276 @@ body.is-admin .inner-menu .admin-only {
 }
 
 
-/* ====== 4. LOGIN SECTION - 2 CỘT ====== */
+/* ========================================
+   LOGIN PAGE - TRANG ĐĂNG NHẬP RIÊNG
+   ======================================== */
 
-.login-section {
-    background: #f5f5f5;
-    min-height: calc(100vh - 200px);
+/* ====== RESET BODY CHO LOGIN PAGE ====== */
+body.login-page-body {
+    background: #f5f7fa;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    padding: 100px 20px; /* ← Tăng padding top */
+    flex-direction: column;
 }
 
-.login-container-two-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
+/* ====== HEADER LOGIN - LOGO + NÚT QUAY LẠI ====== */
+.login-page-header {
+    background: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.login-page-header .inner-wrap {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-page-header .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-page-header .logo-img img {
+    height: 50px;
+    width: auto;
+}
+
+.login-page-header .logo-content span {
+    color: #333;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* ====== NÚT QUAY LẠI TRANG CHỦ ====== */
+.btn-back-home {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.btn-back-home:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-back-home i {
+    font-size: 16px;
+}
+
+
+/* ====== LOGIN CONTENT - 2 CỘT ====== */
+.login-page-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.login-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.login-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
 }
 
 /* Cột trái - Branding */
-.login-left-col {
-    padding: 40px;
+.login-brand-column {
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
 }
 
-.brand-content h1 {
-    font-size: 48px;
+.login-brand-content {
+    width: 100%;
+}
+
+.login-brand-content h1 {
+    font-size: 42px;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: 700;
 }
 
-.brand-slogan {
-    font-size: 24px;
-    color: #667eea;
+.login-brand-slogan {
+    font-size: 22px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
-.brand-desc {
-    font-size: 16px;
+.login-brand-desc {
+    font-size: 15px;
     color: #666;
     line-height: 1.6;
-    margin-bottom: 40px;
-}
-
-.features {
-    margin-top: 40px;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    font-size: 16px;
-    color: #333;
-}
-
-.feature-item i {
-    font-size: 28px;
-    margin-right: 15px;
-    color: #667eea;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f0f4ff;
-    border-radius: 12px;
-}
-
-/* Cột phải - Form */
-.login-right-col {
-    padding: 20px;
-}
-
-.login-box {
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    padding: 40px;
-    border: 1px solid #e0e0e0;
-}
-
-.login-header {
-    text-align: center;
     margin-bottom: 30px;
 }
 
-.login-header h2 {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: 700;
+.login-features {
+    margin-top: 30px;
 }
 
-.login-header p {
-    color: #666;
+.login-feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
     font-size: 15px;
+    color: #333;
 }
 
-.form-group {
+.login-feature-item i {
+    font-size: 20px;
+    margin-right: 12px;
+    color: white;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+/* Cột phải - Form đăng nhập */
+.login-form-column {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.login-form-box {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    padding: 35px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.login-form-header {
+    text-align: center;
     margin-bottom: 25px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
+.login-form-header h2 {
+    font-size: 28px;
     color: #333;
-    font-weight: 500;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.login-form-header p {
+    color: #666;
     font-size: 14px;
 }
 
-.form-group label span {
+/* Form styles */
+.login-form-group {
+    margin-bottom: 20px;
+}
+
+.login-form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.login-form-group label span {
     color: #dc3545;
 }
 
-.input-wrapper {
+.login-input-wrapper {
     position: relative;
 }
 
-.input-wrapper i {
+.login-input-wrapper i {
     position: absolute;
-    left: 15px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
     color: #999;
+    font-size: 14px;
 }
 
-.form-control {
+.login-form-control {
     width: 100%;
-    padding: 12px 15px 12px 45px;
+    padding: 10px 5px 10px 10px;
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 14px;
     transition: all 0.3s;
 }
 
-.form-control:focus {
+.login-form-group .login-input-wrapper input::placeholder {
+    margin-left:0px;
+}
+.login-form-control:focus {
     outline: none;
     border-color: #667eea;
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-.btn-login {
+.login-btn-submit {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s;
+    margin-top: 5px;
 }
 
-.btn-login:hover {
+.login-btn-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
 }
 
-.btn-login:disabled {
+.login-btn-submit:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none;
 }
 
-.login-footer {
-    text-align: center;
-    margin-top: 0px;
-    padding-top: 25px;
-    border-top: 1px solid #e0e0e0;
-}
-
-.login-footer a {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.login-footer a:hover {
-    text-decoration: underline;
-}
-
-.alert {
+/* Alert messages */
+.login-alert {
     padding: 12px 15px;
     border-radius: 8px;
     margin-bottom: 20px;
     display: none;
+    font-size: 14px;
 }
 
-.alert.show {
+.login-alert.show {
     display: block;
     animation: slideInDown 0.3s ease;
 }
@@ -313,60 +380,194 @@ body.is-admin .inner-menu .admin-only {
     }
 }
 
-.alert-danger {
+.login-alert-danger {
     background: #fee;
     border: 1px solid #fcc;
     color: #c33;
 }
 
-.alert-success {
+.login-alert-success {
     background: #efe;
     border: 1px solid #cfc;
     color: #3c3;
 }
 
-.demo-accounts {
-    background: #f8f9fa;
-    padding: 15px;
+/* Demo accounts box */
+.login-demo-accounts {
+    background: linear-gradient(135deg, #f0f4ff 0%, #f8f0ff 100%);
+    border: 2px solid #e0e7ff;
+    padding: 12px;
     border-radius: 10px;
-    margin-top: 20px;
-    font-size: 13px;
+    margin-top: 18px;
+    font-size: 12px;
+    cursor: pointer;
 }
 
-.demo-accounts h4 {
-    font-size: 14px;
-    margin-bottom: 10px;
+.login-demo-accounts h4 {
+    font-size: 13px;
+    margin-bottom: 8px;
     color: #333;
 }
 
-.demo-accounts code {
+.login-demo-accounts p {
+    margin-bottom: 5px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.login-demo-accounts code {
     background: white;
     padding: 2px 6px;
     border-radius: 4px;
     color: #667eea;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+
+/* ====== FOOTER LOGIN PAGE ====== */
+.login-page-footer {
+    background: white;
+    padding: 40px 0;
+    margin-top: auto;
+    border-top: 1px solid #e0e0e0;
+}
+
+.login-page-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.login-footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.login-footer-contact h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.login-footer-contact p {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.login-footer-contact i {
+    color: #667eea;
+    margin-right: 8px;
+    width: 20px;
+}
+
+.login-footer-social h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: right;
+}
+
+.login-footer-social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.login-footer-social-links a {
+    display: block;
+    transition: transform 0.3s;
+}
+
+.login-footer-social-links a:hover {
+    transform: translateY(-5px);
+}
+
+.login-footer-social-links img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
 }
 
 
 /* ====== 5. RESPONSIVE ====== */
 
+@media (max-width: 992px) {
+    .login-two-columns {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .login-brand-column {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .login-brand-content h1 {
+        font-size: 36px;
+    }
+
+    .login-brand-slogan {
+        font-size: 20px;
+    }
+
+    .login-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .login-feature-item {
+        margin-bottom: 0;
+    }
+
+    .login-footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .login-footer-social h2 {
+        text-align: center;
+    }
+
+    .login-footer-social-links {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
-    .login-container {
-        flex-direction: column;
+    .login-page-header .inner-wrap {
+        padding: 0 20px;
     }
 
-    .login-left {
-        padding: 40px 30px;
+    .login-form-box {
+        padding: 30px 20px;
     }
 
-    .login-right {
-        padding: 40px 30px;
+    .login-brand-content h1 {
+        font-size: 32px;
     }
-    
-    /* Dropdown trên mobile */
+
     .user-dropdown {
         left: 10px;
         right: 10px;
         min-width: auto;
         max-width: none;
+    }
+
+    /* Ẩn text "Trang chủ" trên mobile, chỉ giữ icon */
+    .btn-back-home span {
+        display: none;
+    }
+    
+    .btn-back-home {
+        padding: 10px 15px;
     }
 }

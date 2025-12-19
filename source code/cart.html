@@ -12,6 +12,13 @@
       />
     <link rel="stylesheet" href="./asset/Css/base.css">
     <link rel="stylesheet" href="./asset/Css/style.css">
+    <script type="module">
+        import { updateHeaderUI } from './asset/Js/login.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            updateHeaderUI();
+        });
+    </script>
     <title>Giỏ hàng</title>
 </head>
 <body>
@@ -78,9 +85,6 @@
                     <div class="bottom-contact">
                         <p>Khám phá bộ sưu tập mới nhất – nơi kết hợp giữa xu hướng và sự tinh tế.</p>
                     </div>
-                </div>
-                <div class="inner-button">
-                    <a href="#products" class="button-two">Xem sản phẩm</a>
                 </div>
             </div>
         </div>

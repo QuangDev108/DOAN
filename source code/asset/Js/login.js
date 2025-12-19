@@ -127,8 +127,7 @@ export function updateHeaderUI() {
         } else {
             document.body.classList.remove("is-admin");
         }
-        const icon = user.role === 'admin' ? '👨‍💼' : '👤';
-        loginButton.innerHTML = `${icon} ${user.fullName}`;
+        loginButton.innerHTML = `${user.fullName}`;
         loginButton.style.cursor = "pointer";
 
         let dropdown = loginButton.parentElement.querySelector(".user-dropdown");
@@ -149,7 +148,7 @@ export function updateHeaderUI() {
                     font-size: 14px;
                     font-weight: 500;
                     transition: all 0.2s;
-                ">🚪 Đăng xuất</button>
+                "> Đăng xuất</button>
             `;
 
             loginButton.parentElement.style.position = "relative";
