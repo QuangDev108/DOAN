@@ -9,7 +9,6 @@
 </head>
 <body class="login-page-body">
     
-    <!-- Header - LOGO + NÚT QUAY LẠI -->
     <header class="login-page-header">
         <div class="inner-wrap">
             <div class="logo">
@@ -29,12 +28,10 @@
         </div>
     </header>
 
-    <!-- Login Content - 2 Cột -->
     <main class="login-page-content">
         <div class="login-page-container">
             <div class="login-two-columns">
                 
-                <!-- Cột trái - Branding -->
                 <div class="login-brand-column">
                     <div class="login-brand-content">
                         <h1>🛍️ HighFashion</h1>
@@ -58,7 +55,6 @@
                     </div>
                 </div>
 
-                <!-- Cột phải - Form đăng nhập -->
                 <div class="login-form-column">
                     <div class="login-form-box">
                         <div class="login-form-header">
@@ -66,10 +62,8 @@
                             <p>Chào mừng bạn quay trở lại HighFashion!</p>
                         </div>
 
-                        <!-- Alert -->
                         <div id="alertBox" class="login-alert"></div>
 
-                        <!-- Login Form -->
                         <form id="loginForm">
                             <div class="login-form-group">
                                 <label>Tên đăng nhập <span>*</span></label>
@@ -127,6 +121,7 @@
             </div>
         </div>
     </footer>
+    <!--End Footer -->
 
     <script type="module">
         import { login } from './asset/Js/login.js';
@@ -182,13 +177,12 @@
             }
         });
 
-        // Auto-fill demo khi double click
+        // Auto-fill 
         document.getElementById('username').addEventListener('dblclick', () => {
             document.getElementById('username').value = 'admin';
             document.getElementById('password').value = 'admin123';
         });
         
-        // Click vào demo accounts để auto-fill
         document.querySelector('.login-demo-accounts').addEventListener('click', (e) => {
             const text = e.target.textContent;
             if (text.includes('Admin')) {

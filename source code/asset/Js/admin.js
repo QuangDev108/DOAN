@@ -5,7 +5,6 @@ import { createCategory, updateCategory, deleteCategory, getCategoryById } from 
 
 console.log("🔐 Admin Panel loaded!");
 
-// ========== BIẾN TOÀN CỤC ==========
 let editingProductId = null;
 let editingCategoryId = null;
 

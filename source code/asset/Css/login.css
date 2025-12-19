@@ -1,20 +1,11 @@
-/* ========================================
-   LOGIN.CSS - Tất cả CSS cho login & auth
-   ======================================== */
-
-/* ====== 1. ẨN/HIỆN MENU QLSP ====== */
-
-/* Ẩn menu QLSP mặc định */
 .inner-menu .admin-only {
     display: none;
 }
 
-/* Hiện menu QLSP khi admin đăng nhập */
 body.is-admin .inner-menu .admin-only {
     display: block;
 }
 
-/* Style cho menu QLSP */
 .inner-menu .admin-only a {
     color: #667eea;
     font-weight: 600;
@@ -26,14 +17,10 @@ body.is-admin .inner-menu .admin-only {
 }
 
 
-/* ====== 2. DROPDOWN USER - CHỈ NÚT ĐĂNG XUẤT ====== */
-
-/* Đảm bảo .login có position relative */
 .login {
     position: relative;
 }
 
-/* Dropdown container - CỰC GỌNG */
 .user-dropdown {
     position: absolute;
     top: calc(100% + 12px);
@@ -59,9 +46,7 @@ body.is-admin .inner-menu .admin-only {
     }
 }
 
-/* Logout button */
-.user-dropdown button,
-#btnLogoutDropdown {
+.user-dropdown button,#btnLogoutDropdown {
     width: 100%;
     padding: 10px;
     background: #dc3545;
@@ -74,15 +59,12 @@ body.is-admin .inner-menu .admin-only {
     transition: all 0.2s;
 }
 
-.user-dropdown button:hover,
-#btnLogoutDropdown:hover {
+.user-dropdown button:hover,#btnLogoutDropdown:hover {
     background: #c82333;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
-
-/* ====== 3. LOGIN BUTTON STYLE ====== */
 
 .login .button {
     transition: all 0.3s;
@@ -94,12 +76,6 @@ body.is-admin .inner-menu .admin-only {
     transform: translateY(-2px);
 }
 
-
-/* ========================================
-   LOGIN PAGE - TRANG ĐĂNG NHẬP RIÊNG
-   ======================================== */
-
-/* ====== RESET BODY CHO LOGIN PAGE ====== */
 body.login-page-body {
     background: #f5f7fa;
     min-height: 100vh;
@@ -107,7 +83,6 @@ body.login-page-body {
     flex-direction: column;
 }
 
-/* ====== HEADER LOGIN - LOGO + NÚT QUAY LẠI ====== */
 .login-page-header {
     background: white;
     padding: 20px 0;
@@ -140,7 +115,6 @@ body.login-page-body {
     font-weight: 700;
 }
 
-/* ====== NÚT QUAY LẠI TRANG CHỦ ====== */
 .btn-back-home {
     display: flex;
     align-items: center;
@@ -165,8 +139,6 @@ body.login-page-body {
     font-size: 16px;
 }
 
-
-/* ====== LOGIN CONTENT - 2 CỘT ====== */
 .login-page-content {
     flex: 1;
     display: flex;
@@ -187,7 +159,6 @@ body.login-page-body {
     align-items: center;
 }
 
-/* Cột trái - Branding */
 .login-brand-column {
     padding: 20px 40px;
     display: flex;
@@ -248,7 +219,6 @@ body.login-page-body {
     flex-shrink: 0;
 }
 
-/* Cột phải - Form đăng nhập */
 .login-form-column {
     padding: 20px;
     display: flex;
@@ -282,7 +252,6 @@ body.login-page-body {
     font-size: 14px;
 }
 
-/* Form styles */
 .login-form-group {
     margin-bottom: 20px;
 }
@@ -355,7 +324,6 @@ body.login-page-body {
     transform: none;
 }
 
-/* Alert messages */
 .login-alert {
     padding: 12px 15px;
     border-radius: 8px;
@@ -495,8 +463,6 @@ body.login-page-body {
 }
 
 
-/* ====== 5. RESPONSIVE ====== */
-
 @media (max-width: 992px) {
     .login-two-columns {
         grid-template-columns: 1fr;
@@ -562,7 +528,6 @@ body.login-page-body {
         max-width: none;
     }
 
-    /* Ẩn text "Trang chủ" trên mobile, chỉ giữ icon */
     .btn-back-home span {
         display: none;
     }
