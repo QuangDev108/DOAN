@@ -1,5 +1,5 @@
 {
- "users": [
+  "users": [
     {
       "id": 1,
       "username": "admin",
@@ -22,33 +22,33 @@
     }
   ],
   "category": [
-    { 
-      "id": 1, 
+    {
+      "id": 1,
       "name": "Áo",
       "description": "Các loại áo thun, sơ mi, polo"
     },
-    { 
-      "id": 2, 
+    {
+      "id": 2,
       "name": "Quần",
       "description": "Quần jean, tây, short"
     },
-    { 
-      "id": 3, 
+    {
+      "id": 3,
       "name": "Váy",
       "description": "Váy ngắn, midi, maxi"
     },
-    { 
-      "id": 4, 
+    {
+      "id": 4,
       "name": "Đầm",
       "description": "Đầm dạ hội, công sở, dự tiệc"
     },
-    { 
-      "id": 5, 
+    {
+      "id": 5,
       "name": "Áo khoác",
       "description": "Áo khoác jean, blazer, hoodie"
     },
-    { 
-      "id": 6, 
+    {
+      "id": 6,
       "name": "Phụ kiện",
       "description": "Túi xách, dây nịt, mũ, khăn"
     }

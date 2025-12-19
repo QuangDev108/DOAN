@@ -20,15 +20,14 @@ const productForm = document.getElementById("productForm");
 const categoryForm = document.getElementById("categoryForm");
 
 // ========== TOAST THÔNG BÁO ==========
-function showToast(message, isError = false) 
-{
+function showToast(message, isError = false) {
     const toast = document.getElementById("toast");
     const toastMessage = document.getElementById("toastMessage");
-    
+
     toastMessage.textContent = message;
     toast.classList.remove("error");
     if (isError) toast.classList.add("error");
-    
+
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 3000);
 }
@@ -37,11 +36,11 @@ function showToast(message, isError = false)
 document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
         const tabName = btn.dataset.tab;
-        
+
         // Remove active
         document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
         document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-        
+
         // Add active
         btn.classList.add("active");
         document.getElementById(`${tabName}-tab`).classList.add("active");
@@ -55,18 +54,16 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 // ==========================================
 
 // Load danh sách sản phẩm
-async function loadProducts() 
-{
+async function loadProducts() {
     productsTableBody.innerHTML = `
         <tr><td colspan="7" class="loading">
             <i class="fa-solid fa-spinner fa-spin"></i><br>Đang tải...
         </td></tr>
     `;
 
-    try 
-    {
+    try {
         const products = await fetchApi(API_PRODUCTS);
-        
+
         if (products.length === 0) {
             productsTableBody.innerHTML = `
                 <tr><td colspan="7" class="empty">Chưa có sản phẩm nào</td></tr>
@@ -91,10 +88,10 @@ async function loadProducts()
                 </td>
                 <td>
                     <div class="actions">
-                        <button class="btn-edit" onclick="editProduct(${item.id})">
+                        <button class="btn-edit" onclick="editProduct('${item.id}')">
                             <i class="fa-solid fa-pen"></i> Sửa
                         </button>
-                        <button class="btn-delete" onclick="removeProduct(${item.id})">
+                        <button class="btn-delete" onclick="removeProduct('${item.id}')">
                             <i class="fa-solid fa-trash"></i> Xóa
                         </button>
                     </div>
@@ -102,8 +99,7 @@ async function loadProducts()
             </tr>
         `).join("");
 
-    } catch (error) 
-    {
+    } catch (error) {
         productsTableBody.innerHTML = `
             <tr><td colspan="7" class="empty" style="color:#e74c3c;">
                  Lỗi tải dữ liệu! Kiểm tra JSON Server.
@@ -113,17 +109,14 @@ async function loadProducts()
 }
 
 // Load danh mục vào dropdown
-async function loadCategoryOptions() 
-{
-    try 
-    {
+async function loadCategoryOptions() {
+    try {
         const categories = await fetchApi(API_CATEGORY);
         const select = document.getElementById("productType");
-        
+
         select.innerHTML = `<option value="">-- Chọn loại --</option>` +
             categories.map(cat => `<option value="${cat.name}">${cat.name}</option>`).join("");
-    } catch (error) 
-    {
+    } catch (error) {
         console.error("Lỗi load danh mục:", error);
     }
 }
@@ -151,10 +144,9 @@ productModal.addEventListener("click", (e) => {
 
 // Sửa sản phẩm
 window.editProduct = async (id) => {
-    try 
-    {
+    try {
         const product = await getProductById(id);
-        
+
         editingProductId = id;
         document.getElementById("productModalTitle").textContent = "Sửa sản phẩm";
         document.getElementById("productName").value = product.name;
@@ -164,28 +156,25 @@ window.editProduct = async (id) => {
         document.getElementById("productSize").value = product.size || "M";
         document.getElementById("productColor").value = product.color || "";
         document.getElementById("productImage").value = product.image;
-        
+
         productModal.classList.add("show");
-    } 
-    catch (error)
-    {
+    }
+    catch (error) {
         showToast("Lỗi: " + error.message, true);
     }
 };
 
 // Xóa sản phẩm
 window.removeProduct = async (id) => {
-    if (!confirm("Bạn chắc chắn muốn xóa sản phẩm này?")) 
+    if (!confirm("Bạn chắc chắn muốn xóa sản phẩm này?"))
         return;
-    
-    try 
-    {
+
+    try {
         await deleteProduct(id);
         showToast("Đã xóa sản phẩm!");
         loadProducts();
-    } 
-    catch (error) 
-    {
+    }
+    catch (error) {
         showToast("Lỗi: " + error.message, true);
     }
 };
@@ -193,7 +182,7 @@ window.removeProduct = async (id) => {
 // Submit form sản phẩm
 productForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
     const productData = {
         name: document.getElementById("productName").value,
         price: parseInt(document.getElementById("productPrice").value),
@@ -203,7 +192,7 @@ productForm.addEventListener("submit", async (e) => {
         color: document.getElementById("productColor").value,
         image: document.getElementById("productImage").value
     };
-    
+
     try {
         if (editingProductId) {
             await updateProduct(editingProductId, productData);
@@ -212,7 +201,7 @@ productForm.addEventListener("submit", async (e) => {
             await createProduct(productData);
             showToast("Đã thêm sản phẩm mới!");
         }
-        
+
         productModal.classList.remove("show");
         loadProducts();
     } catch (error) {
@@ -236,7 +225,7 @@ async function loadCategories() {
 
     try {
         const categories = await fetchApi(API_CATEGORY);
-        
+
         if (categories.length === 0) {
             categoriesTableBody.innerHTML = `
                 <tr><td colspan="4" class="empty">Chưa có danh mục nào</td></tr>
@@ -251,10 +240,10 @@ async function loadCategories() {
                 <td>${item.description || "-"}</td>
                 <td>
                     <div class="actions">
-                        <button class="btn-edit" onclick="editCategory(${item.id})">
+                        <button class="btn-edit" onclick="editCategory('${item.id}')">
                             <i class="fa-solid fa-pen"></i> Sửa
                         </button>
-                        <button class="btn-delete" onclick="removeCategory(${item.id})">
+                        <button class="btn-delete" onclick="removeCategory('${item.id}')">
                             <i class="fa-solid fa-trash"></i> Xóa
                         </button>
                     </div>
@@ -296,12 +285,12 @@ categoryModal.addEventListener("click", (e) => {
 window.editCategory = async (id) => {
     try {
         const category = await getCategoryById(id);
-        
+
         editingCategoryId = id;
         document.getElementById("categoryModalTitle").textContent = "Sửa danh mục";
         document.getElementById("categoryName").value = category.name;
         document.getElementById("categoryDescription").value = category.description || "";
-        
+
         categoryModal.classList.add("show");
     } catch (error) {
         showToast("Lỗi: " + error.message, true);
@@ -311,7 +300,7 @@ window.editCategory = async (id) => {
 // Xóa danh mục
 window.removeCategory = async (id) => {
     if (!confirm("Bạn chắc chắn muốn xóa danh mục này?")) return;
-    
+
     try {
         await deleteCategory(id);
         showToast("Đã xóa danh mục!");
@@ -325,12 +314,12 @@ window.removeCategory = async (id) => {
 // Submit form danh mục
 categoryForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
     const categoryData = {
         name: document.getElementById("categoryName").value,
         description: document.getElementById("categoryDescription").value
     };
-    
+
     try {
         if (editingCategoryId) {
             await updateCategory(editingCategoryId, categoryData);
@@ -339,7 +328,7 @@ categoryForm.addEventListener("submit", async (e) => {
             await createCategory(categoryData);
             showToast("Đã thêm danh mục mới!");
         }
-        
+
         categoryModal.classList.remove("show");
         loadCategories();
         loadCategoryOptions();
