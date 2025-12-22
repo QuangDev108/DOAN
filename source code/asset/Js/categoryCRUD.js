@@ -101,29 +101,29 @@ export const deleteCategory = async (id) => {
 };
 
 //====Patch - Cập nhật 1 phần danh mục =====
-export const patchCategory = async (id, partialData) => {
-    try
-    {
-        const response = await fetch (`${API_CATEGORY}/${id}`, {
-            method: "PATCH",
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(partialData)
-        });
+// export const patchCategory = async (id, partialData) => {
+//     try
+//     {
+//         const response = await fetch (`${API_CATEGORY}/${id}`, {
+//             method: "PATCH",
+//             headers:{
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(partialData)
+//         });
 
-        if(!response.ok)
-        {
-            throw new Error("Không thể cập nhật danh mục");
-        }
+//         if(!response.ok)
+//         {
+//             throw new Error("Không thể cập nhật danh mục");
+//         }
 
-        const result = await response.json();
-        console.log("Đã cập nhật 1 phần danh mục:", result);
-        return result;
-    }
-    catch(error)
-    {
-        console.error("Lỗi patch danh mục:", error);
-        throw error;
-    }
-};
+//         const result = await response.json();
+//         console.log("Đã cập nhật 1 phần danh mục:", result);
+//         return result;
+//     }
+//     catch(error)
+//     {
+//         console.error("Lỗi patch danh mục:", error);
+//         throw error;
+//     }
+// };

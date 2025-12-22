@@ -13,7 +13,7 @@ export const createProduct = async (productData) => {
 
         if(!response.ok)
         {
-            throw new console.error("Không thể thêm sp");
+            throw new Error("Không thể thêm sp");
             
         }
 
@@ -100,29 +100,29 @@ export const deleteProduct = async (id) => {
 };
 
 //=====Patch - Cập nhật 1 phần sp ======
-export const patchProduct = async (id, partialData) => {
-    try 
-    {
-        const response = await fetch(`${API_PRODUCTS}/${id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(partialData)
-        });
+// export const patchProduct = async (id, partialData) => {
+//     try 
+//     {
+//         const response = await fetch(`${API_PRODUCTS}/${id}`, {
+//             method: "PATCH",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(partialData)
+//         });
 
-        if(!response.ok)
-        {
-            throw new Error("Không thể patch sp");
-        }
+//         if(!response.ok)
+//         {
+//             throw new Error("Không thể patch sp");
+//         }
 
-        const result = await response.json();
-        console.log("Đã patch sp", result);
-        return result;
-    }
-    catch (error)
-    {
-        console.error("Lỗi patch sp:", error);
-        throw error;
-    }
-};
+//         const result = await response.json();
+//         console.log("Đã patch sp", result);
+//         return result;
+//     }
+//     catch (error)
+//     {
+//         console.error("Lỗi patch sp:", error);
+//         throw error;
+//     }
+// };

@@ -21,9 +21,9 @@
       "description": "Đầm dạ hội, công sở, dự tiệc"
     },
     {
-      "id": "5",
       "name": "Áo khoác",
-      "description": "Áo khoác jean, blazer, hoodie"
+      "description": "Áo khoác jean, blazer, hoodie",
+      "id": "5"
     },
     {
       "id": "6",
@@ -109,15 +109,13 @@
       "image": "asset/image/damden.webp"
     },
     {
-      "id": "8",
       "name": "Túi xách da nữ",
-      "type": "Phụ kiện",
-      "categoryId": 6,
-      "size": "Free",
-      "color": "Nâu",
       "price": 520000,
-      "quantity": 4,
-      "image": "asset/image/tui-xach.jpg"
+      "quantity": 10,
+      "type": "Phụ kiện",
+      "color": "Nâu",
+      "image": "asset/image/tui-xach.jpg",
+      "id": "8"
     },
     {
       "id": "9",

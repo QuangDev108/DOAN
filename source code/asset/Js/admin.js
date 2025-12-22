@@ -5,7 +5,6 @@ import { createCategory, updateCategory, deleteCategory, getCategoryById } from 
 
 console.log("🔐 Admin Panel loaded!");
 
-// ========== BIẾN TOÀN CỤC ==========
 let editingProductId = null;
 let editingCategoryId = null;
 
@@ -20,104 +19,108 @@ const productForm = document.getElementById("productForm");
 const categoryForm = document.getElementById("categoryForm");
 
 // ========== TOAST THÔNG BÁO ==========
-function showToast(message, isError = false) {
+function showToast(message, isError = false)
+{
     const toast = document.getElementById("toast");
     const toastMessage = document.getElementById("toastMessage");
     
     toastMessage.textContent = message;
     toast.classList.remove("error");
-    if (isError) toast.classList.add("error");
-    
+    if(isError) toast.classList.add("error");
+
     toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 3000);
+    setTimeout(() => toast.classList.remove("show"),3000);
 }
 
 // ========== TABS ==========
 document.querySelectorAll(".tab-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", () =>{
         const tabName = btn.dataset.tab;
-        
-        // Remove active
+
         document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
         document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-        
-        // Add active
+
         btn.classList.add("active");
         document.getElementById(`${tabName}-tab`).classList.add("active");
     });
 });
-
-
 
 // ==========================================
 //          QUẢN LÝ SẢN PHẨM
 // ==========================================
 
 // Load danh sách sản phẩm
-async function loadProducts() {
+async function loadProducts()
+{
     productsTableBody.innerHTML = `
-        <tr><td colspan="7" class="loading">
-            <i class="fa-solid fa-spinner fa-spin"></i><br>Đang tải...
+        <tr><td colspan ="7" class ="loading">
+            <i class ="fa-solid fa-spinner fa-spin"></i> <br> Đang tải...
         </td></tr>
     `;
-
-    try {
+    
+    try
+    {
         const products = await fetchApi(API_PRODUCTS);
-        
-        if (products.length === 0) {
+
+        if(products.length === 0)
+        {
             productsTableBody.innerHTML = `
-                <tr><td colspan="7" class="empty">Chưa có sản phẩm nào</td></tr>
+                <tr><td colspan = "7" class = "empty"> Chưa có sản phẩm nào </td></tr>
             `;
             return;
         }
-
         productsTableBody.innerHTML = products.map(item => `
-            <tr>
-                <td><strong>#${item.id}</strong></td>
-                <td>
-                    <img src="${item.image}" class="product-img" alt="${item.name}"
-                         onerror="this.src='https://placehold.co/55x55?text=No+Image'">
-                </td>
-                <td>${item.name}</td>
-                <td>${item.type}</td>
-                <td class="price">${item.price.toLocaleString("vi-VN")}đ</td>
-                <td>
-                    <span class="stock ${item.quantity < 10 ? 'low' : 'normal'}">
-                        ${item.quantity} sp
-                    </span>
-                </td>
-                <td>
-                    <div class="actions">
-                        <button class="btn-edit" onclick="editProduct(${item.id})">
-                            <i class="fa-solid fa-pen"></i> Sửa
-                        </button>
-                        <button class="btn-delete" onclick="removeProduct(${item.id})">
-                            <i class="fa-solid fa-trash"></i> Xóa
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        `).join("");
-
-    } catch (error) {
+                <tr>
+                    <td> <strong>#${item.id} </strong></td>
+                    <td>
+                        <img src ="${item.image}" class ="product-img" alt ="${item.name}"
+                             onerror = "this.src= 'https://placehold.co/55x55/eee/999?text=No+Image'">
+                    </td>
+                    <td>${item.name}</td>
+                    <td>${item.type}</td>
+                    <td class ="price">${item.price.toLocaleString("vi-VN")}đ</td>
+                    <td>
+                        <span class ="stock ${item.quantity < 10 ? 'low' : 'normal'}">
+                            ${item.quantity} sp
+                        </span>
+                    </td>
+                    <td>
+                        <div class ="actions">
+                            <button class ="btn-edit" onclick ="editProduct(${item.id})">
+                                <i class ="fa-solid fa-pen"></i> Sửa
+                            </button>
+                            <button class ="btn-delete" onclick ="removeProduct(${item.id})">
+                                <i class ="fa-solid fa-trash"></i> Xóa
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join("");
+    }
+    catch(error)
+    {
         productsTableBody.innerHTML = `
-            <tr><td colspan="7" class="empty" style="color:#e74c3c;">
-                ❌ Lỗi tải dữ liệu! Kiểm tra JSON Server.
+            <tr><td colspan ="7" class ="empty" style ="color:#e74c3c">
+                Lỗi tải dữ liệu! Kiểm tra JSON SEVER.
             </td></tr>
         `;
     }
 }
 
 // Load danh mục vào dropdown
-async function loadCategoryOptions() {
-    try {
+async function loadCategoryOptions()
+{
+    try
+    {
         const categories = await fetchApi(API_CATEGORY);
         const select = document.getElementById("productType");
-        
-        select.innerHTML = `<option value="">-- Chọn loại --</option>` +
-            categories.map(cat => `<option value="${cat.name}">${cat.name}</option>`).join("");
-    } catch (error) {
-        console.error("Lỗi load danh mục:", error);
+
+        select.innerHTML = `<option value ="">-- Chọn loại --</option>` +
+            categories.map(cat => `<option value ="${cat.name}">${cat.name}</option>`).join("");
+    }
+    catch(error)
+    {
+        console.log("Lỗi load danh mục:", error);
     }
 }
 
@@ -139,15 +142,16 @@ document.getElementById("cancelProduct").addEventListener("click", () => {
 });
 
 productModal.addEventListener("click", (e) => {
-    if (e.target === productModal) productModal.classList.remove("show");
+    if(e.target === productModal) 
+        productModal.classList.remove("show");
 });
 
 // Sửa sản phẩm
 window.editProduct = async (id) => {
-    try 
+    try
     {
         const product = await getProductById(id);
-        
+
         editingProductId = id;
         document.getElementById("productModalTitle").textContent = "Sửa sản phẩm";
         document.getElementById("productName").value = product.name;
@@ -157,10 +161,10 @@ window.editProduct = async (id) => {
         document.getElementById("productSize").value = product.size || "M";
         document.getElementById("productColor").value = product.color || "";
         document.getElementById("productImage").value = product.image;
-        
+
         productModal.classList.add("show");
-    } 
-    catch (error)
+    }
+    catch(error)
     {
         showToast("Lỗi: " + error.message, true);
     }
@@ -168,51 +172,54 @@ window.editProduct = async (id) => {
 
 // Xóa sản phẩm
 window.removeProduct = async (id) => {
-    if (!confirm("Bạn chắc chắn muốn xóa sản phẩm này?")) 
-        return;
-    
-    try 
+    if(!confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
+
+    try
     {
         await deleteProduct(id);
-        showToast("Đã xóa sản phẩm!");
+        showToast("Đã xóa sản phâm!");
         loadProducts();
-    } 
-    catch (error) 
+    }
+    catch (error)
     {
         showToast("Lỗi: " + error.message, true);
     }
 };
 
 // Submit form sản phẩm
-productForm.addEventListener("submit", async (e) => {
+productForm.addEventListener("submit", async(e) => {
     e.preventDefault();
-    
+
     const productData = {
         name: document.getElementById("productName").value,
-        price: parseInt(document.getElementById("productPrice").value),
+        price: parseInt(document.getElementById("productPrice").value), 
         quantity: parseInt(document.getElementById("productQuantity").value),
         type: document.getElementById("productType").value,
-        size: document.getElementById("productSize").value,
         color: document.getElementById("productColor").value,
         image: document.getElementById("productImage").value
     };
-    
-    try {
-        if (editingProductId) {
+
+    try
+    {
+        if(editingProductId)
+        {
             await updateProduct(editingProductId, productData);
             showToast("Đã cập nhật sản phẩm!");
-        } else {
+        }
+        else
+        {
             await createProduct(productData);
             showToast("Đã thêm sản phẩm mới!");
         }
-        
+
         productModal.classList.remove("show");
         loadProducts();
-    } catch (error) {
+    }
+    catch(error)
+    {
         showToast("Lỗi: " + error.message, true);
     }
 });
-
 
 
 // ==========================================
@@ -220,9 +227,10 @@ productForm.addEventListener("submit", async (e) => {
 // ==========================================
 
 // Load danh sách danh mục
-async function loadCategories() {
+async function loadCategories()
+{
     categoriesTableBody.innerHTML = `
-        <tr><td colspan="4" class="loading">
+     <tr><td colspan="4" class="loading">
             <i class="fa-solid fa-spinner fa-spin"></i><br>Đang tải...
         </td></tr>
     `;
@@ -254,11 +262,12 @@ async function loadCategories() {
                 </td>
             </tr>
         `).join("");
-
-    } catch (error) {
+    }
+    catch (error)
+    {
         categoriesTableBody.innerHTML = `
             <tr><td colspan="4" class="empty" style="color:#e74c3c;">
-                ❌ Lỗi tải dữ liệu!
+                Lỗi tải dữ liệu!
             </td></tr>
         `;
     }
@@ -282,61 +291,74 @@ document.getElementById("cancelCategory").addEventListener("click", () => {
 });
 
 categoryModal.addEventListener("click", (e) => {
-    if (e.target === categoryModal) categoryModal.classList.remove("show");
+    if(e.target === categoryModal)
+        categoryModal.classList.remove("show");
 });
 
 // Sửa danh mục
 window.editCategory = async (id) => {
-    try {
+    try
+    {
         const category = await getCategoryById(id);
-        
+
         editingCategoryId = id;
         document.getElementById("categoryModalTitle").textContent = "Sửa danh mục";
         document.getElementById("categoryName").value = category.name;
         document.getElementById("categoryDescription").value = category.description || "";
-        
+
         categoryModal.classList.add("show");
-    } catch (error) {
+    }
+    catch(error)
+    {
         showToast("Lỗi: " + error.message, true);
     }
 };
 
 // Xóa danh mục
 window.removeCategory = async (id) => {
-    if (!confirm("Bạn chắc chắn muốn xóa danh mục này?")) return;
-    
-    try {
+    if(!confirm("Bạn có chắc muốn xóa danh mục này?")) return;
+
+    try
+    {
         await deleteCategory(id);
         showToast("Đã xóa danh mục!");
         loadCategories();
-        loadCategoryOptions();
-    } catch (error) {
+        loadCategoryOptions();    
+    }
+    catch (error)
+    {
         showToast("Lỗi: " + error.message, true);
     }
 };
 
 // Submit form danh mục
-categoryForm.addEventListener("submit", async (e) => {
+categoryForm.addEventListener("submit", async(e) => {
     e.preventDefault();
-    
+
     const categoryData = {
         name: document.getElementById("categoryName").value,
         description: document.getElementById("categoryDescription").value
     };
-    
-    try {
-        if (editingCategoryId) {
+
+    try
+    {
+        if(editingCategoryId)
+        {
             await updateCategory(editingCategoryId, categoryData);
-            showToast("Đã cập nhật danh mục!");
-        } else {
-            await createCategory(categoryData);
-            showToast("Đã thêm danh mục mới!");
+            showToast("Đã cập nhật danh mục");
         }
-        
+        else
+        {
+            await createCategory(categoryData);
+            showToast("Đã thêm danh mục");
+        }
+
         categoryModal.classList.remove("show");
         loadCategories();
         loadCategoryOptions();
-    } catch (error) {
+    }
+    catch(error)
+    {
         showToast("Lỗi: " + error.message, true);
     }
 });
